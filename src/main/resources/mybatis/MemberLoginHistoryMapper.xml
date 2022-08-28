@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zerobase.fastlms.admin.mapper.MemberLoginHistoryMapper">
+
+     <select id="selectLoginHistoryList" resultType="com.zerobase.fastlms.admin.dto.MemberLoginHistoryDto">
+         select *
+         from member_log_in_history
+         where user_id = #{userId}
+    </select>
+
+</mapper>

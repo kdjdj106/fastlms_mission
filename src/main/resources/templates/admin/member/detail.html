@@ -96,6 +96,38 @@
             </tbody>
         </table>
 
+
+        <table>
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>
+                    아이디(이메일)
+                </th>
+                <th>
+                    userIP
+                </th>
+                <th>
+                    userAgent
+                </th>
+                <th>
+                    로그인 일자
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="x : ${historyList}">
+                <td>1</td>
+                <td th:text="${x.userId}">kdjdj106@naver.com</td>
+                <td th:text="${x.userIP}">127.0.0.1</td>
+                <td th:text="${x.userAgent}">chrome</td>
+                <td th:text="${x.recentLogInDt}">2022.08.28</td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
         <div>
             <a href="list.do"> 목록 </a>
 

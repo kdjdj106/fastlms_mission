@@ -1,6 +1,8 @@
 package com.zerobase.fastlms.member.service.impl;
 
 import com.zerobase.fastlms.admin.dto.MemberDto;
+import com.zerobase.fastlms.admin.dto.MemberLoginHistoryDto;
+import com.zerobase.fastlms.admin.mapper.MemberLoginHistoryMapper;
 import com.zerobase.fastlms.admin.mapper.MemberMapper;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.components.MailComponents;
@@ -45,6 +47,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberLoginHistoryRepository memberLoginHistoryRepository;
     
     private final MemberMapper memberMapper;
+    private final MemberLoginHistoryMapper memberLoginHistoryMapper;
     
     /**
      * 회원 가입
@@ -274,7 +277,16 @@ public class MemberServiceImpl implements MemberService {
         
         return new ServiceResult();
     }
-    
+
+
+    @Override
+    public List<MemberLoginHistoryDto> list(String userId) {
+        MemberLoginHistoryDto parameter = new MemberLoginHistoryDto();
+        parameter.setUserId(userId);
+        List<MemberLoginHistoryDto> list = memberLoginHistoryMapper.selectLoginHistoryList(parameter);
+        return list;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
