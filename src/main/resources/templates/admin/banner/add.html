@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .detail table th, .detail table td {
+            border: solid 1px #000;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .buttons a, .buttons button {
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+</head>
+<body>
+<div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+<h1>배너 등록</h1>
+
+
+<div class="detail">
+
+    <form method="post" enctype="multipart/form-data">
+
+    <table>
+        <tbody>
+        <tr>
+            <th>
+                배너명 :
+            </th>
+            <th>
+                <input th:value="${detail.subject}" type="text" name="subject" placeholder="배너명 입력" required >
+            </th>
+        </tr>
+        <tr>
+            <th>
+                첨부파일
+            </th>
+            <th>
+                <input type="file" name="file"/>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                오픈방식 :
+            </th>
+            <th>
+                <select th:value="${detail.openMethod}" name="openMethod" required>
+                    <option value="">오픈방식 선택</option>
+                    <option name="openMethod" value="1">새창에서 오픈</option>
+                    <option name="openMethod" value="0">현재창에서 오픈</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                링크 주소 :
+            </th>
+            <th>
+                <input th:value="${detail.linkAddress}" type="text" name="linkAddress" placeholder="링크주소 입력" required >
+            </th>
+        </tr>
+        <tr>
+            <th>
+                정렬 순서 :
+            </th>
+            <th>
+                <input th:value="${detail.sortValue}" type="text" name="sortValue" placeholder="정렬순서 입력" required >
+            </th>
+        </tr>
+        <tr>
+            <th>
+                공개여부 :
+            </th>
+            <th>
+
+                <input th:checked="${detail.usingYn}" type="checkbox" name="usingYn" value="true"   >
+                <label>공개</label>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="buttons">
+        <button th:if="${editMode}" type="submit"> 배너 수정 하기 </button>
+        <button th:if="${!editMode}" type="submit"> 배너 등록 하기 </button>
+        <a href="/admin/banner/list.do"> 목록 이동 </a>
+    </div>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>
